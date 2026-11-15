@@ -1,0 +1,717 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#0c0c0e">
+<title>Dossier : 1960 – une enquête par jour</title>
+<meta name="description" content="Los Angeles, 1960. Chaque jour, un meurtre, des suspects qui mentent. Interrogez, confrontez, arrêtez le coupable. Une seule arrestation. Gratuit.">
+<style>
+:root{--ink:#0c0c0e;--ink2:#17171b;--paper:#e8dcc1;--paper2:#d6c7a0;--gold:#c9a24b;--red:#a3201f;--green:#42723d;--dim:#8d8878;--txt:#e9e4d6}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;min-height:100%}
+body{min-height:100dvh;background:radial-gradient(ellipse at 50% -10%,#2a2620 0%,#0c0c0e 65%) fixed;color:var(--txt);font-family:"Courier New",ui-monospace,monospace;display:flex;flex-direction:column;align-items:center;touch-action:manipulation;overflow-x:hidden}
+body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:50;opacity:.09;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>")}
+body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:49;background:radial-gradient(ellipse at center,transparent 55%,#000b 100%)}
+header{width:100%;max-width:560px;padding:10px 12px 6px;border-bottom:1px solid #c9a24b44;display:grid;grid-template-columns:48px 1fr 48px;align-items:center}
+.title{text-align:center}
+h1{font-family:"Bodoni 72","Didot","Playfair Display",Georgia,serif;font-size:1.45rem;letter-spacing:.2em;margin:0;color:var(--gold);font-weight:700;text-shadow:0 0 18px #c9a24b44;text-transform:uppercase}
+.sub{font-size:.7rem;color:var(--dim);margin-top:2px;letter-spacing:.06em}
+.icon-btn{background:none;border:0;color:var(--gold);font-size:1.25rem;padding:6px;cursor:pointer;font-family:inherit}
+.hud{width:100%;max-width:560px;display:flex;justify-content:center;gap:22px;align-items:center;padding:7px 0;font-size:.72rem;color:var(--dim);letter-spacing:.08em}
+.hud b{color:var(--gold);font-size:1rem;letter-spacing:.1em}
+.hud .off{color:#46423a}
+main{width:100%;max-width:560px;padding:4px 12px 96px;flex:1}
+h2{font-family:"Bodoni 72","Didot",Georgia,serif;font-size:.8rem;letter-spacing:.3em;color:var(--gold);text-transform:uppercase;margin:20px 0 10px;display:flex;align-items:center;gap:10px}
+h2::after{content:"";flex:1;height:1px;background:#c9a24b55}
+.paper{background:linear-gradient(160deg,var(--paper),var(--paper2));color:#1d1a14;border-radius:3px;padding:14px 15px;box-shadow:0 6px 18px #000a,inset 0 0 40px #8b6f3a33;position:relative;line-height:1.5;font-size:.92rem}
+.paper .tag{font-size:.64rem;letter-spacing:.2em;color:#7a2a20;font-weight:700;margin-bottom:6px;display:block}
+.paper.note2{margin-top:10px;background:linear-gradient(160deg,#efe6cc,#dccdaa);border-left:5px solid #7a2a20}
+.spot{display:flex;width:100%;gap:12px;align-items:center;text-align:left;background:var(--ink2);border:1px solid #c9a24b66;color:var(--txt);padding:13px 14px;border-radius:3px;margin-bottom:9px;cursor:pointer;font-family:inherit;font-size:.92rem}
+.spot:active{background:#222228}
+.spot .ic{font-size:1.4rem;width:28px;text-align:center}
+.spot small{display:block;color:var(--dim);font-size:.72rem;margin-top:2px}
+.note{margin-bottom:11px}
+.note .lab{font-size:.64rem;letter-spacing:.14em;color:#7a2a20;font-weight:700;text-transform:uppercase;margin-bottom:4px;display:flex;justify-content:space-between;gap:8px}
+.note:nth-child(odd) .paper{transform:rotate(.25deg)}.note:nth-child(even) .paper{transform:rotate(-.25deg)}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.card{background:linear-gradient(160deg,var(--paper),var(--paper2));color:#1d1a14;border:0;border-radius:3px;padding:10px 9px 11px;text-align:center;cursor:pointer;font-family:inherit;box-shadow:0 6px 16px #000a;position:relative}
+.card:nth-child(odd){transform:rotate(-.7deg)}.card:nth-child(even){transform:rotate(.7deg)}
+.ph{border:3px solid #1d1a14;border-radius:2px;overflow:hidden;background:#cdbd98;display:inline-block;line-height:0;filter:sepia(.55) contrast(1.05)}
+.card .ph{margin:0 auto 7px}
+.card b{display:block;font-size:.92rem}
+.card .job{font-size:.72rem;color:#6a5a3c;margin:1px 0 5px;font-style:italic}
+.card .seen{font-size:.68rem;line-height:1.3;color:#3a3326;margin-top:5px;border-top:1px dashed #8a7a55;padding-top:5px}
+.card .prog{margin-top:6px;font-size:.66rem;letter-spacing:.08em;color:#5b4a2c}
+.stamp{position:absolute;top:8px;right:4px;transform:rotate(14deg);border:2px solid var(--red);color:var(--red);font-weight:700;font-size:.6rem;letter-spacing:.1em;padding:1px 5px;border-radius:3px;background:#fff4;z-index:2}
+.back{background:none;border:0;color:var(--gold);font-family:inherit;font-size:.85rem;padding:8px 0;cursor:pointer;letter-spacing:.08em}
+.who{display:flex;gap:12px;align-items:center;margin-bottom:12px}
+.who b{font-size:1.05rem;display:block}.who span{font-size:.76rem;color:var(--dim);line-height:1.35;display:block}
+.say{font-style:italic;color:#d9cfb5;font-size:.88rem;line-height:1.45;margin:0 0 14px;padding-left:10px;border-left:2px solid #c9a24b66}
+.ask{display:flex;width:100%;justify-content:space-between;gap:8px;align-items:center;text-align:left;background:var(--ink2);border:1px solid #c9a24b66;color:var(--txt);padding:12px 13px;border-radius:3px;margin-bottom:9px;cursor:pointer;font-family:inherit;font-size:.88rem}
+.ask small{color:var(--dim);font-size:.68rem;white-space:nowrap}
+.stmt{margin-bottom:13px}
+.stmt .q{font-size:.66rem;letter-spacing:.12em;color:#7a2a20;font-weight:700;text-transform:uppercase;margin-bottom:5px}
+.stmt .a{font-size:.93rem}
+.stmt.caught{box-shadow:0 6px 18px #000a,inset 0 0 0 2px var(--red)}
+.cbtn{margin-top:10px;border:0;border-radius:3px;padding:9px 12px;background:#2b241a;color:var(--paper);font-family:inherit;font-weight:700;font-size:.78rem;letter-spacing:.06em;cursor:pointer}
+.verdict{display:inline-block;margin-top:8px;border:2px solid var(--red);color:var(--red);padding:2px 8px;font-weight:700;letter-spacing:.12em;font-size:.72rem;transform:rotate(-2deg);border-radius:3px}
+.acc{display:flex;gap:12px;align-items:center;width:100%;text-align:left;margin-bottom:10px;background:var(--ink2);color:var(--txt);border:1px solid #c9a24b66;border-radius:3px;padding:10px 12px;cursor:pointer;font-family:inherit}
+.acc .ph{flex:none;border-color:var(--gold)}
+.acc b{display:block}.acc small{color:var(--dim);font-size:.72rem;line-height:1.3;display:block}
+nav{position:fixed;left:0;right:0;bottom:0;z-index:40;background:#0c0c0ef2;border-top:1px solid #c9a24b55;display:flex;justify-content:center;padding-bottom:env(safe-area-inset-bottom)}
+nav .in{display:flex;width:100%;max-width:560px}
+nav button{flex:1;background:none;border:0;color:var(--dim);font-family:inherit;font-size:.68rem;letter-spacing:.08em;padding:8px 0 9px;cursor:pointer;text-transform:uppercase;border-top:2px solid transparent;position:relative}
+nav button span{display:block;font-size:1.2rem;margin-bottom:1px}
+nav button.on{color:var(--gold);border-top-color:var(--gold)}
+nav .dot{position:absolute;top:5px;right:26%;background:var(--red);color:#fff;border-radius:10px;font-size:.6rem;padding:0 5px;line-height:1.4}
+#toast{position:fixed;top:92px;left:50%;transform:translateX(-50%);background:var(--paper);color:#1d1a14;padding:10px 16px;border-radius:3px;font-weight:700;opacity:0;pointer-events:none;transition:opacity .2s;z-index:80;text-align:center;max-width:90vw;font-size:.85rem;box-shadow:0 6px 18px #000a}
+#toast.show{opacity:1}
+#overlay{position:fixed;inset:0;background:#000c;display:none;align-items:center;justify-content:center;z-index:70;padding:16px}
+#overlay.show{display:flex}
+.modal{background:linear-gradient(160deg,var(--paper),var(--paper2));color:#1d1a14;border-radius:4px;padding:20px 18px;width:100%;max-width:440px;max-height:88dvh;overflow:auto;position:relative;box-shadow:0 12px 40px #000;font-size:.9rem;line-height:1.5}
+.modal h3{font-family:Georgia,serif;margin:0 0 10px;text-align:center;letter-spacing:.12em;text-transform:uppercase;font-size:1.05rem}
+.modal ul{padding-left:18px;margin:8px 0}
+.close{position:absolute;top:4px;right:10px;background:none;border:0;color:#1d1a14;font-size:1.6rem;cursor:pointer}
+.mbtn{display:block;width:100%;margin-top:10px;padding:12px;border:0;border-radius:3px;background:var(--red);color:#fff;font-weight:700;font-family:inherit;font-size:.92rem;cursor:pointer;letter-spacing:.05em}
+.mbtn.alt{background:#2b241a}
+.pick{display:block;width:100%;text-align:left;margin-top:7px;padding:8px 10px;border:1px solid #7a6a47;background:#f3ead2;color:#1d1a14;border-radius:3px;font-family:inherit;font-size:.78rem;cursor:pointer;line-height:1.35}
+.pick b{display:block;font-size:.62rem;letter-spacing:.12em;color:#7a2a20;text-transform:uppercase;margin-bottom:2px}
+.pgroup{font-size:.66rem;letter-spacing:.2em;color:#5b4a2c;margin:12px 0 0;text-transform:uppercase}
+.sgrid{display:grid;grid-template-columns:repeat(4,1fr);text-align:center;gap:6px;margin:10px 0 14px}
+.sgrid b{display:block;font-size:1.5rem}.sgrid small{font-size:.64rem;color:#5b4a2c}
+.dist{display:flex;align-items:center;gap:6px;margin:3px 0;font-size:.78rem}
+.dist span{width:92px;flex:none}
+.dist i{display:block;background:#2b241a;color:var(--paper);min-width:22px;padding:1px 6px;text-align:right;font-style:normal;font-weight:700;border-radius:2px}
+.dist i.me{background:var(--red)}
+.center{text-align:center}
+.next{text-align:center;margin-top:12px;font-size:.8rem;color:#5b4a2c}.next b{display:block;font-size:1.25rem;color:#1d1a14;font-variant-numeric:tabular-nums}
+.rank{text-align:center;color:#7a2a20;font-weight:700;letter-spacing:.1em;margin-bottom:8px}
+.big{font-size:1.35rem;letter-spacing:.2em;text-align:center;color:#7a2a20}
+.trace{text-align:center;font-size:1.05rem;letter-spacing:.05em;margin:8px 0;word-break:break-all}
+.sweat{animation:sweat 1.2s ease-in-out infinite}
+@keyframes sweat{50%{transform:translateY(2px)}}
+</style>
+</head>
+<body>
+<header>
+  <button class="icon-btn" id="btn-help" aria-label="Règles">?</button>
+  <div class="title"><h1>Dossier : 1960</h1><div class="sub" id="sub"></div></div>
+  <button class="icon-btn" id="btn-stats" aria-label="Statistiques">📊</button>
+</header>
+<div class="hud" id="hud"></div>
+<main id="main"></main>
+<nav><div class="in" id="nav"></div></nav>
+<div id="toast"></div>
+<div id="overlay"><div class="modal" id="modal"></div></div>
+
+<script>
+/* =====================================================================
+   RÉGLAGES
+   ===================================================================== */
+const START = Date.UTC(2026, 10, 14);   // jour de l'affaire n°1
+const TZ = "Europe/Paris";              // nouvelle affaire à minuit, heure de Paris
+const STORE = "dossier1960-v1";
+const MAX_STARS = 5, T0 = 460;          // l'enquête commence à 7 h 40
+
+/* =====================================================================
+   OUTILS
+   ===================================================================== */
+function mulberry32(a){return function(){a|=0;a=a+0x6D2B79F5|0;let t=Math.imul(a^a>>>15,1|a);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296}}
+function parisParts(){const p={};new Intl.DateTimeFormat("en-CA",{timeZone:TZ,year:"numeric",month:"2-digit",day:"2-digit",hour:"2-digit",minute:"2-digit",second:"2-digit",hourCycle:"h23"}).formatToParts(new Date()).forEach(x=>p[x.type]=+x.value);return p}
+function todayIndex(){const p=parisParts();return Math.max(0,Math.round((Date.UTC(p.year,p.month-1,p.day)-START)/864e5))}
+function nextIn(){const p=parisParts();const s=86400-(p.hour*3600+p.minute*60+p.second);return[Math.floor(s/3600),Math.floor(s%3600/60),s%60].map(v=>String(v).padStart(2,"0")).join(":")}
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const il=p=>p.g==="m"?"il":"elle", Il=p=>p.g==="m"?"Il":"Elle", e=p=>p.g==="f"?"e":"", le=p=>p.g==="m"?"le":"la";
+const nm=p=>`${p.civ} ${p.last}`;
+const clock=m=>{const h=Math.floor(m/60)%24,mm=m%60;return `${h} h ${String(mm).padStart(2,"0")}`};
+const MOIS=["janvier","février","mars","avril","mai","juin","juillet","août","septembre","octobre","novembre","décembre"];
+
+/* =====================================================================
+   LA DISTRIBUTION — dix personnages écrits à la main, chacun sa voix.
+   Chacun peut être l'innocent, le menteur de service ou le meurtrier.
+   ===================================================================== */
+const CAST=[
+{id:"vivian",first:"Vivian",last:"Duvall",civ:"Mlle",g:"f",job:"Chanteuse de cabaret",
+ look:{h:"wave",hc:"#2b1a14",cl:"#7a2a3a",cg:1},
+ hello:"« Asseyez-vous, chéri. Pas là, c'est ma place porte-bonheur. »",
+ alibi:P=>`« J'étais ${P}, chéri. Tout le monde me voit partout où je vais, c'est le malheur des célébrités. »`,
+ see:(X,S,T)=>`« J'ai vu ${X} ${S}, ${T}. Reconnaître un visage, c'est mon métier, chéri. »`,
+ about:v=>`« ${nm(v)} ? ${Il(v)} m'a faite et défaite, chéri. Une carrière, ça se prête, ça ne se donne jamais. »`,
+ lead:"Quelle horreur, chéri.",
+ evade:P=>`« Bon. Je n'étais pas ${P}. J'ai marché, seule, en robe du soir, jusqu'à ce que mes escarpins me supplient d'arrêter. Voilà. »`,
+ confess:(SH,why)=>`« Oh, chéri, vous êtes cruel. Je n'étais pas là-bas : j'étais ${SH}. ${why} Voilà, j'ai tout dit. Mais tuer ? Moi ? »`,
+ slipDef:"« Les journaux ! J'ai dû lire ça dans les journaux, chéri… »",
+ motive:"voyait sa carrière entre les mains de la victime, qui menaçait de la rayer de l'affiche"},
+{id:"dorothy",first:"Dorothy",last:"Brennan",civ:"Mme",g:"f",job:"Comptable",
+ look:{h:"bun",hc:"#5a4a3a",cl:"#3a4a52",gl:1},
+ hello:"« Soyons brefs, Inspecteur. J'ai des bilans à clore. »",
+ alibi:P=>`« J'étais ${P}. Heure d'arrivée, heure de départ : je note tout, dans mon carnet. »`,
+ see:(X,S,T)=>`« J'ai vu ${X} ${S}, ${T}. J'ai regardé ma montre, j'ai tout noté. »`,
+ about:v=>`« ${nm(v)} ? Des comptes opaques, des promesses orales. J'ai toujours exigé des reçus, ${il(v)} a toujours refusé. »`,
+ lead:"C'est regrettable.",
+ evade:P=>`« Je n'étais pas ${P}, c'est exact. Je suis rentrée à pied, par Wilshire. Seule, sans témoin. Je sais ce que cela donne sur le papier. »`,
+ confess:(SH,why)=>`« Très bien. Je n'étais pas là-bas : j'étais ${SH}. ${why} Je vous prie de ne pas l'inscrire au procès-verbal. »`,
+ slipDef:"« Cela figurait dans la presse du soir. Je lis les journaux de la première à la dernière ligne. »",
+ motive:"avait falsifié des livres de comptes, et la victime venait de s'en apercevoir"},
+{id:"nora",first:"Nora",last:"Whitfield",civ:"Mlle",g:"f",job:"Journaliste mondaine",
+ look:{h:"bob",hc:"#7a5a3a",cl:"#2d4a3a",hat:"pill"},
+ hello:"« Enfin la police ! Dites-moi tout, j'ai une colonne à remplir avant l'aube. »",
+ alibi:P=>`« J'étais ${P}, évidemment. Je suis toujours là où ça se passe, Inspecteur. Sauf ce soir, manifestement. »`,
+ see:(X,S,T)=>`« J'ai vu ${X} ${S}, ${T}. Je me souviens de tout : c'est mon gagne-pain. »`,
+ about:v=>`« ${nm(v)} ? Je pourrais écrire un livre sur ${il(v)}. Mon rédacteur en chef refuserait de le publier. »`,
+ lead:"Quelle affaire sordide.",
+ evade:P=>`« Je n'étais pas ${P}. J'étais sur une piste. Une histoire en or, que je garde pour ma chronique de demain. Sans témoin, hélas. »`,
+ confess:(SH,why)=>`« Vous me prenez la main dans le sac. J'étais ${SH}, pas là-bas. ${why} Et si ça sort dans un journal, je saurai que c'est vous. »`,
+ slipDef:"« J'ai mes sources, Inspecteur. Une journaliste est toujours au courant avant la police. »",
+ motive:"avait bâti sa réputation sur un scandale inventé, et la victime s'apprêtait à le prouver"},
+{id:"ruby",first:"Ruby",last:"Castellano",civ:"Mme",g:"f",job:"Propriétaire d'une pension de famille",
+ look:{h:"curls",hc:"#9a9a9a",cl:"#5a3a2a"},
+ hello:"« Entrez, mon petit, vous avez une mine affreuse. Un café ? Non ? Tant pis. »",
+ alibi:P=>`« J'étais ${P}, mon petit. Ça faisait des mois que je n'étais pas sortie, il fallait bien que ça arrive un soir pareil ! »`,
+ see:(X,S,T)=>`« J'ai vu ${X} ${S}, ${T}. Je me suis dit : tiens, pas encore au lit, à cette heure ! »`,
+ about:v=>`« ${nm(v)} ? On a beau dire, on ne souhaite ça à personne. Je ne comprenais pas toujours ${le(v)}, mais je ne lui voulais aucun mal. »`,
+ lead:"Mon Dieu, mon Dieu.",
+ evade:P=>`« Je n'étais pas ${P}, non. Je suis allée prier à l'église, mais elle était fermée, alors j'ai attendu devant, seule. Personne ne m'a vue, mon petit. »`,
+ confess:(SH,why)=>`« Oh, mon petit… Je n'étais pas là-bas. J'étais ${SH}. ${why} Je n'ai jamais osé le dire à personne. »`,
+ slipDef:"« Oh, ce sont les voisines qui bavardent… Elles savent tout avant tout le monde, mon petit. »",
+ motive:"allait perdre sa pension de famille, que la victime s'apprêtait à faire saisir"},
+{id:"ida",first:"Ida",last:"Lindqvist",civ:"Dr",g:"f",job:"Médecin de famille",
+ look:{h:"bun",hc:"#c9b27a",cl:"#e8e0d0",gl:1},
+ hello:"« Je n'ai que dix minutes. Un patient m'attend. Il est vivant, lui. »",
+ alibi:P=>`« J'étais ${P}. Je peux vous décrire les lieux en détail si vous en doutez. »`,
+ see:(X,S,T)=>`« J'ai vu ${X} ${S}, ${T}. Attitude tendue, teint pâle. Je note ces choses-là, par déformation. »`,
+ about:v=>`« ${nm(v)} ? Une hygiène de vie déplorable, et aucun respect des conseils. J'avais prévenu tout le monde. »`,
+ lead:"Une fin brutale.",
+ evade:P=>`« Je n'étais pas ${P}. J'étais dans mon cabinet, avec mes dossiers. Seule. Le secret médical m'interdit d'en dire plus. »`,
+ confess:(SH,why)=>`« Très bien, docteur contre inspecteur : j'étais ${SH}, pas là-bas. ${why} Gardez cela pour vous. »`,
+ slipDef:"« Un médecin entend beaucoup de choses. Les confidences d'un policier, par exemple. »",
+ motive:"avait signé de faux certificats pour la victime et risquait la radiation"},
+{id:"walter",first:"Walter",last:"Moretti",civ:"M.",g:"m",job:"Avocat d'affaires",
+ look:{h:"side",hc:"#2b241a",cl:"#1d2433",gl:1},
+ hello:"« Inspecteur. Je vous préviens : tout ce que je dirai sera exact, et rien de ce que je dirai ne vous sera utile. »",
+ alibi:P=>`« J'étais ${P}. Vous trouverez cela dans mon agenda, que mon secrétaire tient à jour. »`,
+ see:(X,S,T)=>`« J'ai aperçu ${X} ${S}, ${T}. Sous réserve de ma mémoire, bien entendu. »`,
+ about:v=>`« ${nm(v)} ? Un client… un ancien client. Je ne dirai rien de plus sans l'accord de mes confrères. »`,
+ lead:"Tragique.",
+ evade:P=>`« Soit. Je n'étais pas ${P}. J'étais au volant, à tourner en rond dans Beverly Hills, seul. Aucun témoin, aucun reçu. Je sais comment cela sonne. »`,
+ confess:(SH,why)=>`« Mettons que j'omette un détail : j'étais ${SH}. ${why} Je compte sur votre discrétion, Inspecteur. »`,
+ slipDef:"« Un avocat entend toujours ce que la presse ignore. Ne me demandez pas de qui je le tiens. »",
+ motive:"avait détourné les fonds d'un client commun, et la victime s'apprêtait à le dénoncer au barreau"},
+{id:"frankie",first:"Frankie",last:"Delaney",civ:"M.",g:"m",job:"Ancien boxeur, garde du corps",
+ look:{h:"crop",hc:"#3a3228",cl:"#3a3a3a"},
+ hello:"« Écoute, Inspecteur. Je suis pas bavard. Pose tes questions. »",
+ alibi:P=>`« J'étais ${P}. Point. »`,
+ see:(X,S,T)=>`« J'ai vu ${X} ${S}, ${T}. Pas de doute. J'ai l'œil pour ça. »`,
+ about:v=>`« ${nm(v)} ? ${Il(v)} payait. ${Il(v)} criait. J'encaissais les deux. C'est tout. »`,
+ lead:"Sale histoire.",
+ evade:P=>`« J'étais pas ${P}. J'ai marché. Seul. J'ai pas de témoin. J'en ai jamais eu besoin. »`,
+ confess:(SH,why)=>`« Bon. J'étais ${SH}, pas là-bas. ${why} Voilà. Satisfait ? »`,
+ slipDef:"« C'était dans les journaux. Ou à la radio. Je sais plus. »",
+ motive:"avait été humilié devant tout le monde par la victime et n'avait jamais pardonné"},
+{id:"eddie",first:"Eddie",last:"Kessler",civ:"M.",g:"m",job:"Agent artistique",
+ look:{h:"side",hc:"#2b241a",cl:"#5a2f2a",hat:"fedora",st:1,cg:1},
+ hello:"« Inspecteur ! Eddie Kessler, agent de tout ce qui brille. Vous avez une carte de visite ? »",
+ alibi:P=>`« J'étais ${P}, croyez-moi sur parole, et je ne dis jamais ça. »`,
+ see:(X,S,T)=>`« J'ai vu ${X} ${S}, ${T}. Un pro n'oublie jamais un visage rentable. »`,
+ about:v=>`« ${nm(v)} ? Mon meilleur client… enfin, mon plus gros problème. Dans ce métier, c'est pareil. »`,
+ lead:"Quelle perte pour le métier.",
+ evade:P=>`« Disons que je n'étais pas tout à fait ${P}. J'étais… en rendez-vous d'affaires. Seul. Avec un téléphone public. »`,
+ confess:(SH,why)=>`« Allons, entre nous : j'étais ${SH}. ${why} Mais vous me gardez ça au chaud, d'accord ? »`,
+ slipDef:"« Tout le monde en parle dans le métier ! Les murs ont des oreilles, Inspecteur. »",
+ motive:"voyait la victime sur le point de rompre le contrat qui le faisait vivre"},
+{id:"harold",first:"Harold",last:"Sutton",civ:"M.",g:"m",job:"Notable, associé en affaires",
+ look:{h:"side",hc:"#8a8a8a",cl:"#2a2a2a",gl:1,st:1},
+ hello:"« Je tiens à préciser que je suis ici de mon plein gré. Et que je préférerais ne pas y être. »",
+ alibi:P=>`« J'étais ${P}. Je suis un homme de routine, voyez-vous, et mes habitudes sont connues. »`,
+ see:(X,S,T)=>`« J'ai vu ${X} ${S}, ${T}. Voyez-vous, je remarque ces choses-là. »`,
+ about:v=>`« ${nm(v)} ? Voyez-vous, nous avions des intérêts communs, et des méthodes… divergentes. »`,
+ lead:"Voyez-vous, c'est regrettable.",
+ evade:P=>`« Voyez-vous, je n'étais pas exactement ${P}. J'ai fait un tour dans mon automobile. Seul. Je sais, je sais. »`,
+ confess:(SH,why)=>`« Voyez-vous… j'étais ${SH}. ${why} Je vous demande la plus grande discrétion. »`,
+ slipDef:"« Voyez-vous, les gens de ma condition apprennent ces choses par… diverses voies. »",
+ motive:"voyait ses affaires s'effondrer parce que la victime refusait de renouveler leur association"},
+{id:"max",first:"Max",last:"Novak",civ:"M.",g:"m",job:"Électricien, régisseur de nuit",
+ look:{h:"messy",hc:"#4a3a2a",cl:"#4a4a3a",gl:1},
+ hello:"« Euh… oui, bonjour. Je… je sais pas trop quoi dire. »",
+ alibi:P=>`« J'étais… euh… ${P}. Oui. Voilà. »`,
+ see:(X,S,T)=>`« J'ai vu ${X} ${S}… euh, ${T}. Je suis sûr. Enfin, presque. »`,
+ about:v=>`« ${nm(v)} ? Euh… on se parlait peu. ${Il(v)} me faisait un peu peur. »`,
+ lead:"C'est… c'est affreux.",
+ evade:P=>`« Je… je n'étais pas ${P}. J'étais dans la rue, devant chez moi, à marcher. Tout seul. Je sais que c'est pas bon. »`,
+ confess:(SH,why)=>`« D'accord, d'accord… j'étais ${SH}. ${why} Me regardez pas comme ça. »`,
+ slipDef:"« Euh… c'est… c'est les gars de l'équipe qui en parlaient. Je sais plus. »",
+ motive:"avait été accusé à tort d'un vol par la victime et avait tout perdu"}
+];
+
+/* Lieux d'alibi : phrase du suspect, ce que dit un témoin qui le voit, témoin à interroger, démenti / confirmation */
+const PLACES=[
+ {at:"au drive-in de Van Nuys, à la séance de minuit",seen:"au drive-in de Van Nuys",f:"le caissier du drive-in",
+  no:n=>`Le caissier du drive-in est formel : la voiture de ${n} n'a pas passé la barrière ce soir. « Je note chaque plaque, Inspecteur. »`,
+  ok:n=>`Le caissier du drive-in le confirme : la voiture de ${n} a passé la barrière à 22 h 40 et n'est pas ressortie.`},
+ {at:"au bowling Holiday Lanes, à Culver City",seen:"au bowling Holiday Lanes",f:"le gérant du bowling",
+  no:n=>`Le gérant du bowling n'a pas vu ${n} de la soirée, et d'ordinaire il voit tout.`,
+  ok:n=>`Le gérant du bowling confirme : ${n} a enchaîné les parties sur la piste 4 jusqu'à minuit.`},
+ {at:"au Blue Moon Diner, sur Ventura Boulevard",seen:"au Blue Moon Diner",f:"la serveuse du Blue Moon Diner",
+  no:n=>`La serveuse du Blue Moon Diner jure que ${n} n'a pas commandé son café ce soir : « Je m'en souviendrais. »`,
+  ok:n=>`La serveuse du Blue Moon Diner se souvient bien de ${n} : un café noir, une tarte aux pommes laissée intacte.`},
+ {at:"à Union Station, à attendre le train de nuit",seen:"à Union Station",f:"le chef de quai d'Union Station",
+  no:n=>`Le chef de quai d'Union Station n'a croisé ${n} nulle part dans la salle d'attente.`,
+  ok:n=>`Le chef de quai d'Union Station a vu ${n} patienter dans la salle d'attente, valise aux pieds.`},
+ {at:"à la salle de billard de Spring Street",seen:"à la salle de billard de Spring Street",f:"le marqueur de la salle de billard",
+  no:n=>`Le marqueur de la salle de billard est formel : ${n} n'a pas touché une queue de la soirée.`,
+  ok:n=>`Le marqueur de la salle de billard se souvient de ${n} : trois parties perdues de suite, et une humeur noire.`},
+ {at:"au cinéma Rialto, à la séance de nuit",seen:"devant le cinéma Rialto",f:"l'ouvreuse du Rialto",
+  no:n=>`L'ouvreuse du Rialto est formelle : ${n} n'a pas mis les pieds dans la salle. « Je connais tous mes habitués. »`,
+  ok:n=>`L'ouvreuse du Rialto le confirme : ${n} a occupé le même fauteuil jusqu'à la fin du film.`},
+ {at:"chez moi, devant la télévision",seen:"à sa fenêtre, éclairée par la lueur bleue de la télévision",f:"le voisin de palier",
+  no:n=>`Le voisin de palier est catégorique : l'appartement de ${n} est resté sombre et silencieux toute la soirée.`,
+  ok:n=>`Le voisin de palier l'a entendu : la télévision de ${n} a braillé jusqu'à minuit.`},
+ {at:"à la station-service de nuit de Sepulveda Boulevard",seen:"à la station-service de Sepulveda Boulevard",f:"le pompiste de nuit",
+  no:n=>`Le pompiste de nuit n'a pas servi ${n}, et il n'a vu personne d'autre que des routiers.`,
+  ok:n=>`Le pompiste de nuit a bien servi ${n} vers 22 h 50 : le plein, et un paquet de cigarettes.`},
+ {at:"à l'Olympic Auditorium, devant un combat de boxe",seen:"à l'Olympic Auditorium",f:"le soigneur de l'Olympic Auditorium",
+  no:n=>`Le soigneur de l'Olympic Auditorium n'a pas aperçu ${n} de la soirée, alors que les places étaient comptées.`,
+  ok:n=>`Le soigneur de l'Olympic Auditorium a vu ${n} hurler au premier rang pendant tout le combat.`}
+];
+
+/* Ce que cachent ceux qui mentent sans être coupables */
+const SECRETS=[
+ {sh:"chez mon bookmaker, sur Fairfax Avenue",seen:"entrer chez le bookmaker de Fairfax Avenue",why:"Je joue aux courses. Beaucoup, et je perds. Si ça se sait, je suis fini."},
+ {sh:"au motel Blue Haven, sur Sepulveda",seen:"sortir du motel Blue Haven, à Sepulveda, en galante compagnie",why:"J'ai une liaison, Inspecteur. Avec quelqu'un qu'on ne doit surtout pas voir avec moi."},
+ {sh:"chez un usurier de Boyle Heights",seen:"ressortir de chez l'usurier de Boyle Heights",why:"Je dois de l'argent à des gens dangereux. Beaucoup d'argent."},
+ {sh:"derrière le marché de gros, à un rendez-vous avec un maître chanteur",seen:"retrouver un type louche derrière le marché de gros",why:"Quelqu'un me fait chanter. J'allais payer, une fois de plus."},
+ {sh:"dans l'arrière-salle d'un poker clandestin, sur Alameda Street",seen:"descendre dans l'arrière-salle d'un poker clandestin, sur Alameda Street",why:"Je joue gros dans un cercle clandestin. Si la police l'apprend, je suis ruiné."}
+];
+
+/* Les six scènes de crime. Le détail trahi (arme + pièce exacte) n'est jamais donné à la presse. */
+const SCENES=[
+{id:"starlite",found:"au Starlite Room, sur Sunset Strip",front:"devant le Starlite Room",
+ victim:{first:"Sid",last:"Valentine",g:"m",civ:"M.",job:"patron du Starlite Room, roi de Sunset Strip"},
+ bio:"Il tenait la Strip depuis dix ans : il lançait les carrières, il les brisait, et gardait les contrats dans son coffre.",
+ secret:"un cendrier de cristal, dans son bureau",
+ slip:"Se faire fracasser le crâne avec son propre cendrier de cristal, dans son bureau… quelle fin pour un roi.",
+ kill:"l'a assommé avec son propre cendrier de cristal, dans son bureau, à 23 h 07.",
+ spots:[{label:"La pendule",ic:"🕰️",text:"Sur le sol du bureau, une pendule de bronze, brisée dans la chute, est arrêtée à 23 h 07."},
+        {label:"Le canapé",ic:"🛋️",text:"Derrière le canapé du bureau, un cendrier de cristal, soigneusement essuyé. Ni l'arme ni la pièce n'ont été communiquées à la presse."},
+        {label:"Le tiroir",ic:"🗄️",text:"Dans le tiroir du bureau : un contrat froissé, annoté au crayon rouge — « Dernière chance. Tu signes, ou je te raye de l'affiche. »"}]},
+{id:"desert",found:"au Desert Sands Motel, sur la route de Pasadena",front:"devant le Desert Sands Motel",
+ victim:{first:"Gloria",last:"Kane",g:"f",civ:"Mme",job:"gérante du Desert Sands Motel"},
+ bio:"Elle savait qui dormait avec qui, et ne s'était jamais privée de le faire savoir à ceux qui comptaient.",
+ secret:"une lampe de chevet en laiton, dans la chambre 6",
+ slip:"Se faire frapper avec une simple lampe de chevet en laiton, dans la chambre 6… sans même un cri.",
+ kill:"l'a frappée avec une lampe de chevet en laiton, dans la chambre 6, à 23 h 07.",
+ spots:[{label:"Le réveil",ic:"⏰",text:"Sur la table de nuit de la chambre 6, un réveil de voyage, le verre fêlé, est arrêté à 23 h 07."},
+        {label:"Sous le lit",ic:"🛏️",text:"Sous le lit de la chambre 6, une lampe de chevet en laiton, l'abat-jour écrasé : on a frotté le socle avec un drap. Ni l'arme ni la chambre n'ont été communiquées à la presse."},
+        {label:"Le registre",ic:"📒",text:"Dans le registre de l'accueil, la page de ce soir a été arrachée, avec soin."}]},
+{id:"meridian",found:"aux studios Meridian Pictures, à Burbank",front:"devant les studios Meridian Pictures",
+ victim:{first:"Leonard",last:"Ashby",g:"m",civ:"M.",job:"producteur des studios Meridian Pictures"},
+ bio:"Il faisait la pluie et le beau temps sur trois plateaux, et venait de signer une liste de licenciements.",
+ secret:"un projecteur de plateau, sur le plateau 3",
+ slip:"Mourir sous un projecteur arraché de son support, en plein plateau 3… même au cinéma, on n'oserait pas.",
+ kill:"l'a assommé avec un projecteur de plateau, sur le plateau 3, à 23 h 07.",
+ spots:[{label:"Le chronomètre",ic:"⏱️",text:"Sur la table du régisseur, le chronomètre du plateau 3, heurté dans la lutte, s'est arrêté à 23 h 07."},
+        {label:"Le décor",ic:"🎥",text:"Au pied d'un décor du plateau 3, un projecteur à la lentille brisée, la poignée essuyée. Ni l'arme ni le plateau n'ont été communiqués à la presse."},
+        {label:"Le fauteuil",ic:"🪑",text:"Sur le fauteuil de metteur en scène : une liste de noms, barrés un à un, titrée « Licenciements »."}]},
+{id:"pop",found:"au Pacific Ocean Park, à Santa Monica",front:"devant l'entrée du Pacific Ocean Park",
+ victim:{first:"Ruth",last:"Calder",g:"f",civ:"Mme",job:"directrice du Pacific Ocean Park"},
+ bio:"Elle avait sauvé le parc de la faillite, et ne pardonnait ni les retards ni les promesses non tenues.",
+ secret:"une clé à molette de mécanicien, au pied de la grande roue",
+ slip:"Se faire fracasser avec une clé à molette de mécanicien, au pied de la grande roue… et personne n'a rien entendu.",
+ kill:"l'a frappée avec une clé à molette de mécanicien, au pied de la grande roue, à 23 h 07.",
+ spots:[{label:"Le tableau de commande",ic:"⚙️",text:"Sur le tableau de commande de la grande roue, l'arrêt d'urgence a été déclenché à 23 h 07."},
+        {label:"Le local technique",ic:"🔧",text:"Dans le local technique, une clé à molette de mécanicien, essuyée avec un chiffon gras. Ni l'arme ni l'endroit exact n'ont été communiqués à la presse."},
+        {label:"La caisse",ic:"💵",text:"Dans la caisse du parc, les recettes de la semaine sont intactes. Ce n'est pas un vol."}]},
+{id:"beacon",found:"dans les locaux du Los Angeles Beacon",front:"devant les locaux du Los Angeles Beacon",
+ victim:{first:"Walt",last:"Harrow",g:"m",civ:"M.",job:"rédacteur en chef du Los Angeles Beacon"},
+ bio:"Il avait bâti le Beacon sur les scandales des autres, et s'apprêtait à publier celui de trop.",
+ secret:"une barre de plomb de linotype, dans la salle des presses",
+ slip:"Se faire fracasser le crâne avec une barre de plomb de linotype, au milieu des rotatives… on aurait pu l'imprimer en première page.",
+ kill:"l'a assommé avec une barre de plomb de linotype, dans la salle des presses, à 23 h 07.",
+ spots:[{label:"L'horloge",ic:"🕰️",text:"Dans la salle des presses, l'horloge, heurtée dans la bagarre, s'est arrêtée à 23 h 07."},
+        {label:"Le marbre",ic:"📰",text:"Sur le marbre d'imprimerie, une barre de plomb de linotype, poisseuse d'encre : on l'a essuyée avec du papier journal. Ni l'arme ni la salle n'ont été communiquées à la presse."},
+        {label:"Le bureau",ic:"⌨️",text:"Sur son bureau : la une de demain, déjà composée — « Scandale : un notable de la ville… » — le nom a été arraché."}]},
+{id:"belair",found:"dans sa villa de Bel Air",front:"devant la villa de Mme Crane, à Bel Air",
+ victim:{first:"Lillian",last:"Crane",g:"f",civ:"Mme",job:"mécène et veuve fortunée"},
+ bio:"Elle finançait la moitié des œuvres de la ville, et tenait ses protégés comme on tient une laisse.",
+ secret:"un tisonnier, dans la bibliothèque",
+ slip:"Se faire tuer avec son propre tisonnier, dans sa bibliothèque, devant la cheminée… quelle ironie.",
+ kill:"l'a frappée avec son propre tisonnier, dans la bibliothèque, à 23 h 07.",
+ spots:[{label:"La pendule",ic:"🕰️",text:"La pendule de la cheminée de la bibliothèque est arrêtée à 23 h 07, la vitre brisée."},
+        {label:"La cheminée",ic:"🔥",text:"Dans la cheminée froide, un tisonnier nettoyé avec les cendres : plus la moindre empreinte. Ni l'arme ni la pièce n'ont été communiquées à la presse."},
+        {label:"Le secrétaire",ic:"📜",text:"Sur le secrétaire : un testament à moitié rédigé, modifié trois fois — des noms biffés au stylo."}]}
+];
+
+const Q_LABEL={a:"Où étiez-vous cette nuit, vers 23 h ?",b:"Qui avez-vous vu cette nuit ?"};
+</script>
+<script>
+/* =====================================================================
+   GÉNÉRATEUR D'AFFAIRE — déterministe : même jour = même affaire pour tous.
+   Logique (garantie par construction, vérifiée sur des milliers d'affaires) :
+   - le coupable (C) a menti sur son alibi et ne peut être vu nulle part ailleurs
+   - un menteur "de service" (D, et D2 le week-end) a menti lui aussi, mais un
+     témoin l'a vu ailleurs : il est innocent du meurtre
+   - tous les non-coupables sont placés ailleurs par un témoignage indépendant
+   - C trahit un détail du crime jamais communiqué à la presse
+   ===================================================================== */
+function genCase(idx){
+  const rnd=mulberry32((0x9E3779B1 ^ Math.imul(idx+11,0x85EBCA6B) ^ 0x1960)>>>0);
+  const pick=a=>a[Math.floor(rnd()*a.length)];
+  const shuf=a=>{a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(rnd()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a};
+  const dow=new Date(START+idx*864e5).getUTCDay();
+  const N=(dow===5||dow===6||dow===0)?5:4;
+
+  const scene=pick(SCENES), v=scene.victim;
+  const cast=shuf(CAST).slice(0,N), places=shuf(PLACES).slice(0,N), secrets=shuf(SECRETS);
+  const roles=N===5?["C","D","D2","H","H"]:["C","D","H","H"];
+  const sus=cast.map((c,i)=>Object.assign({},c,{id:"s"+i,role:roles[i],place:places[i],full:`${c.first} ${c.last}`}));
+  const C=sus[0], D=sus[1], D2=N===5?sus[2]:null, H=sus.filter(s=>s.role==="H");
+  D.secret=secrets[0]; if(D2) D2.secret=secrets[1];
+  sus.forEach(s=>{ s.trueAt = s.role==="C"?"SCÈNE": s.secret? s.secret.sh : s.place.at; s.whereSeen = s.secret? s.secret.seen : s.place.seen; });
+
+  // qui voit qui : chaque non-coupable mentionne UN autre non-coupable. Contraintes :
+  // les menteurs innocents (D, D2) sont forcément aperçus ailleurs ; au moins un honnête n'est mentionné par personne
+  // (pour que « qui n'est cité par personne ? » ne suffise pas à désigner le coupable).
+  const nonC=sus.filter(s=>s.role!=="C");
+  const liarsInn=nonC.filter(s=>s.role==="D"||s.role==="D2");
+  let sees,cover;
+  for(let tries=0;;tries++){
+    sees={};cover={};nonC.forEach(s=>cover[s.id]=[]);
+    nonC.forEach(s=>{const t=pick(nonC.filter(x=>x!==s));sees[s.id]=t;cover[t.id].push(s)});
+    if(liarsInn.every(l=>cover[l.id].length>0) && H.some(h=>cover[h.id].length===0)) break;
+    if(tries>500) throw new Error("gen "+idx);
+  }
+  const hasSlip=rnd()<0.45;
+  const Y=pick(H); sees[C.id]=Y;   // le coupable "voit" Y devant la scène à 22 h 15 (sans effet sur 23 h)
+  const sightIds=x=>cover[x.id].map(z=>`${z.id}:b`);
+
+  // pièces
+  const spots=[];
+  const sc=scene.spots, scKind=["time","weapon","flavor"];
+  const sceneSpots=sc.map((s,i)=>({id:"S"+(i+1),group:"scene",label:s.label,ic:s.ic,short:i===1?"L'arme du crime":i===0?"L'heure du crime":s.label,text:s.text,kind:scKind[i]}));
+  const terrain=[
+    {id:"F1",group:"terrain",label:`Interroger ${C.place.f}`,ic:"🕵️",short:`Témoignage : ${C.place.f}`,text:C.place.no(nm(C)),kind:"deny",claim:{not:{who:C.id,at:C.place.at}}},
+    {id:"F2",group:"terrain",label:`Interroger ${D.place.f}`,ic:"🕵️",short:`Témoignage : ${D.place.f}`,text:D.place.no(nm(D)),kind:"deny",claim:{not:{who:D.id,at:D.place.at}}},
+    {id:"F3",group:"terrain",label:`Interroger ${H[0].place.f}`,ic:"🕵️",short:`Témoignage : ${H[0].place.f}`,text:H[0].place.ok(nm(H[0])),kind:"confirm",claim:{who:H[0].id,at:H[0].place.at}}
+  ];
+  shuf(sceneSpots).forEach(s=>spots.push(s));
+  shuf(terrain).forEach(s=>spots.push(s));
+
+  // déclarations
+  const stmts=[];
+    sus.forEach(s=>{
+    // a : alibi
+    const lie=s.role!=="H";
+    const refutedBy = s.role==="C"?["F1"] : s.role==="D"?["F2",...sightIds(D)] : s.role==="D2"?sightIds(D2) : [];
+    const press = lie? `${s.id}:p`:null;
+    stmts.push({id:`${s.id}:a`,sid:s.id,topic:"a",q:Q_LABEL.a,text:s.alibi(s.place.at),claim:{who:s.id,at:s.place.at,self:true},flag:lie?"lie":null,refutedBy,press});
+    // b : qui avez-vous vu
+    const t=sees[s.id];
+    if(s.role==="C") stmts.push({id:`${s.id}:b`,sid:s.id,topic:"b",q:Q_LABEL.b,text:s.see(nm(t),scene.front,"vers 22 h 15"),claim:{who:t.id,at:"SCÈNE@22h15"},seenPhrase:scene.front,flag:null,refutedBy:[]});
+    else stmts.push({id:`${s.id}:b`,sid:s.id,topic:"b",q:Q_LABEL.b,text:s.see(nm(t),t.whereSeen,"vers 23 h"),claim:{who:t.id,at:t.trueAt},seenPhrase:t.whereSeen,flag:null,refutedBy:[]});
+    // c : la victime (le coupable trahit le détail)
+    if(s.role==="C"&&hasSlip) stmts.push({id:`${s.id}:c`,sid:s.id,topic:"c",q:`Que pensez-vous de ${nm(v)} ?`,text:`« ${s.lead} ${scene.slip} »`,claim:null,flag:"slip",refutedBy:[sceneSpots[1].id],react:s.slipDef});
+    else stmts.push({id:`${s.id}:c`,sid:s.id,topic:"c",q:`Que pensez-vous de ${nm(v)} ?`,text:s.about(v),claim:null,flag:null,refutedBy:[]});
+    // p : aveu sous la pression
+    if(lie){
+      const txt = s.role==="C"? s.evade(s.place.at) : s.confess(s.secret.sh,s.secret.why);
+      stmts.push({id:`${s.id}:p`,sid:s.id,topic:"p",q:"Sous la pression…",text:txt,claim:s.role==="C"?null:{who:s.id,at:s.secret.sh,self:true},flag:null,refutedBy:[],press:true});
+    }
+  });
+
+  const d=new Date(START+idx*864e5);
+  const intro=`Los Angeles, ${d.getUTCDate()} ${MOIS[d.getUTCMonth()]} 1960. À 7 h 12, on découvre ${nm(v)}, ${v.job}, mort${e(v)} ${scene.found}. ${scene.bio} Le légiste situe le décès vers 23 h. La presse sait seulement qu'${il(v)} a été retrouvé${e(v)} mort${e(v)} ${scene.found}.`;
+  const captainNote=`« ${N===4?"Quatre":"Cinq"} personnes avaient une raison d'en finir avec ${nm(v)}. Règle de la maison : on ment pour se couvrir soi-même, jamais pour charger ou couvrir quelqu'un d'autre. Certains mentent pour cacher un secret honteux, sans être des assassins. Le tueur, lui, a menti sur son alibi et était sur place à l'heure du crime : personne n'a pu le voir ailleurs. Ni l'arme ni l'endroit exact du corps ne sont dans la presse. Faites-les parler. — Capitaine Dugan »`;
+  const liarsTxt=liarsInn.map(x=>`${nm(x)} a menti sur son alibi, mais ${cover[x.id].map(z=>nm(z)).join(" et ")} l'a vu${e(x)} ${x.whereSeen} : ${il(x)} était ailleurs, donc innocent${e(x)}`).join(" ; ");
+  const solution=[
+    `${nm(C)} a menti sur son alibi : ${C.place.no(nm(C))}`,
+    `${liarsTxt}.`,
+    `Personne n'a vu ${nm(C)} ailleurs : c'est le seul menteur qui n'a pas de place ailleurs qu'à la scène.`,
+    ...(hasSlip?[`Et ${il(C)} a trahi un détail jamais communiqué à la presse : ${scene.secret}.`]:[])
+  ];
+  const confession=`Dans la salle d'interrogatoire, ${C.full} finit par craquer. ${Il(C)} ${C.motive}. Ce soir-là, ${il(C)} ${scene.kill}`;
+  return {idx,N,hasSlip,scene,victim:v,suspects:sus,culprit:C.id,spots,stmts,intro,captainNote,solution,confession,cover:Object.fromEntries(Object.entries(cover).map(([k,a])=>[k,a.map(z=>z.id)])),sees:Object.fromEntries(Object.entries(sees).map(([k,s])=>[k,s.id]))};
+}
+
+/* =====================================================================
+   PORTRAITS EN SVG (aucune image à charger)
+   ===================================================================== */
+function portrait(s,size=64,nervous=false){
+  const L=s.look||{}, skin="#d9c3a0", hc=L.hc||"#2b241a", cl=L.cl||"#333", f=s.g==="f";
+  let o=`<svg viewBox="0 0 100 100" width="${size}" height="${size}" xmlns="http://www.w3.org/2000/svg"><rect width="100" height="100" fill="#cdbd98"/>`;
+  o+=`<path d="M8 100 Q12 72 50 70 Q88 72 92 100Z" fill="${cl}"/>`;
+  o+= f ? `<path d="M38 72 L50 88 L62 72Z" fill="${skin}"/>` : `<path d="M41 71 L50 90 L59 71Z" fill="#e8e0d0"/><path d="M48 76 L52 76 L54 94 L46 94Z" fill="#7a1f1f"/>`;
+  o+=`<rect x="43" y="58" width="14" height="16" fill="${skin}"/><ellipse cx="50" cy="42" rx="19" ry="23" fill="${skin}"/>`;
+  const H={
+    side:`<path d="M31 38 Q31 17 50 16 Q69 17 69 38 Q62 27 50 27 Q38 27 31 38Z" fill="${hc}"/>`,
+    crop:`<path d="M31 36 Q32 19 50 19 Q68 19 69 36 Q60 27 50 27 Q40 27 31 36Z" fill="${hc}"/>`,
+    messy:`<path d="M31 38 Q29 16 50 15 Q71 16 69 38 Q60 26 50 28 Q40 26 31 38Z" fill="${hc}"/><circle cx="36" cy="16" r="4" fill="${hc}"/><circle cx="58" cy="14" r="4" fill="${hc}"/><circle cx="46" cy="13" r="3.5" fill="${hc}"/>`,
+    wave:`<path d="M29 40 Q26 12 50 13 Q74 12 71 40 L74 68 Q64 62 66 44 Q60 27 50 28 Q40 27 34 44 Q36 62 26 68Z" fill="${hc}"/>`,
+    bob:`<path d="M30 52 Q25 14 50 14 Q75 14 70 52 Q67 34 50 30 Q33 34 30 52Z" fill="${hc}"/>`,
+    bun:`<circle cx="50" cy="12" r="8" fill="${hc}"/><path d="M31 38 Q31 17 50 17 Q69 17 69 38 Q62 27 50 27 Q38 27 31 38Z" fill="${hc}"/>`,
+    curls:`${[[34,26],[42,20],[50,18],[58,20],[66,26],[30,36],[70,36]].map(([x,y])=>`<circle cx="${x}" cy="${y}" r="8" fill="${hc}"/>`).join("")}`
+  };
+  o+=H[L.h]||"";
+  if(L.hat==="fedora") o+=`<ellipse cx="50" cy="27" rx="31" ry="6" fill="#2a2420"/><path d="M34 27 Q34 8 50 8 Q66 8 66 27Z" fill="#2a2420"/><rect x="34" y="21" width="32" height="4" fill="#6b5a3a"/>`;
+  if(L.hat==="pill") o+=`<rect x="35" y="11" width="30" height="13" rx="5" fill="#2d2a38"/>`;
+  const ey=nervous?44:42;
+  o+=`<circle cx="42" cy="${ey}" r="1.9" fill="#1d1a14"/><circle cx="58" cy="${ey}" r="1.9" fill="#1d1a14"/>`;
+  if(L.gl) o+=`<circle cx="42" cy="42" r="6.2" fill="none" stroke="#1d1a14" stroke-width="1.6"/><circle cx="58" cy="42" r="6.2" fill="none" stroke="#1d1a14" stroke-width="1.6"/><line x1="48" y1="42" x2="52" y2="42" stroke="#1d1a14" stroke-width="1.4"/>`;
+  o+=`<path d="M49 46 Q50 52 52 52" stroke="#a98f6b" fill="none" stroke-width="1.4"/>`;
+  if(L.st) o+=`<path d="M43 52 Q50 49 57 52 Q50 55 43 52Z" fill="${hc}"/>`;
+  o+= nervous ? `<path d="M44 57 Q50 55 56 57" stroke="${f?"#8a2a2a":"#1d1a14"}" fill="none" stroke-width="1.8"/>` : `<path d="M44 55 Q50 58 56 55" stroke="${f?"#8a2a2a":"#1d1a14"}" fill="none" stroke-width="${f?2.4:1.8}"/>`;
+  if(L.cg) o+=`<line x1="55" y1="57" x2="71" y2="61" stroke="#e8e0d0" stroke-width="2.4"/><circle cx="71.5" cy="61.2" r="1.7" fill="#c33"/>`;
+  if(nervous) o+=`<g class="sweat"><path d="M67 34 q3.5 5 0 8 q-3.5 -3 0 -8Z" fill="#9ec5d8"/></g>`;
+  return `<span class="ph">${o}</svg></span>`;
+}
+
+/* =====================================================================
+   ÉTAT & PERSISTANCE
+   ===================================================================== */
+const fresh=()=>({found:[],asked:[],caught:[],acts:"",min:T0,stars:MAX_STARS,wrong:0,status:"playing",hello:{},briefed:false});
+function load(){try{return JSON.parse(localStorage.getItem(STORE))||{}}catch(_){return{}}}
+function save(){if(mode!=="daily")return;try{localStorage.setItem(STORE,JSON.stringify({daily:Object.assign({idx},game),stats}))}catch(_){}}
+const saved=load();
+let stats=saved.stats||{played:0,wins:0,streak:0,max:0,dist:[0,0,0,0,0],lastDay:-10};
+const idx=todayIndex();
+const dailyCase=genCase(idx);
+let daily=(saved.daily&&saved.daily.idx===idx)?saved.daily:fresh();
+let mode="daily", CASE=dailyCase, game=daily, tab="enquete", viewSuspect=null, justFound=null;
+
+const hasProof=id=>game.caught.some(x=>x.startsWith(id+":"));
+const S=id=>CASE.suspects.find(s=>s.id===id);
+const SP=id=>CASE.spots.find(s=>s.id===id);
+const ST=id=>CASE.stmts.find(s=>s.id===id);
+const $=id=>document.getElementById(id);
+
+function finalizeCase(c){const r=mulberry32(c.idx*7919+13),a=c.suspects.map(s=>s.id);for(let i=a.length-1;i>0;i--){const j=Math.floor(r()*(i+1));[a[i],a[j]]=[a[j],a[i]]}c.order=a}
+finalizeCase(dailyCase);
+
+/* Rangs : score = actions + 3 × erreurs (moins = mieux) */
+const RANKS=[["Légende de la brigade",9],["Inspecteur principal",13],["Inspecteur",18],["Bleu prometteur",24],["Planton chanceux",999]];
+function rankIdx(){const sc=[...game.acts].filter(c=>["🔍","🗣","⚡","❌"].includes(c)).length+game.wrong*3;return RANKS.findIndex(r=>sc<=r[1])}
+
+/* =====================================================================
+   RENDU
+   ===================================================================== */
+function renderAll(){renderHead();renderMain();renderNav()}
+function renderHead(){
+  const d=new Date(START+CASE.idx*864e5);
+  $("sub").textContent= mode==="daily"?`Affaire n°${idx+1} · ${d.getUTCDate()} ${MOIS[d.getUTCMonth()]} 1960`:"Affaire d'entraînement";
+  const st=Math.max(0,game.stars);
+  $("hud").innerHTML=`<span>🕗 <b>${clock(game.min)}</b></span><span>Crédibilité <b>${"★".repeat(st)}<span class="off">${"★".repeat(MAX_STARS-st)}</span></b></span>`;
+}
+function renderNav(){
+  const items=[["enquete","🔍","Enquête"],["suspects","🕵️","Suspects"],["carnet","📓","Carnet"],["accuser","⚖️","Arrêter"]];
+  const n=1+game.found.length+game.asked.length;
+  $("nav").innerHTML=items.map(([k,i,l])=>`<button data-tab="${k}" class="${tab===k?"on":""}"><span>${i}</span>${l}${k==="carnet"?`<i class="dot">${n}</i>`:""}</button>`).join("");
+}
+function renderMain(){
+  const m=$("main");
+  m.innerHTML= tab==="enquete"?viewEnquete(): tab==="suspects"?(viewSuspect?viewInterro():viewSuspects()): tab==="carnet"?viewCarnet():viewArrest();
+  m.querySelectorAll("[data-type]").forEach(el=>typeInto(el,el.dataset.type));
+  justFound=null;
+}
+function typeInto(el,text,speed=11){el.textContent="";let i=0;const t=setInterval(()=>{el.textContent=text.slice(0,++i);if(i>=text.length)clearInterval(t)},speed);el.onclick=()=>{clearInterval(t);el.textContent=text}}
+
+function viewEnquete(){
+  const tw=!game.briefed; game.briefed=true; save();
+  let h=`<div class="paper"><span class="tag">DOSSIER CONFIDENTIEL · BRIGADE CRIMINELLE</span>${tw?`<div data-type="${esc(CASE.intro)}"></div>`:esc(CASE.intro)}</div>`;
+  h+=`<div class="paper note2"><span class="tag">NOTE DU CAPITAINE</span>${esc(CASE.captainNote)}</div>`;
+  const grp=(g,title,sub)=>{
+    h+=`<h2>${title}</h2>`;
+    CASE.spots.filter(s=>s.group===g).forEach(sp=>{
+      if(game.found.includes(sp.id)){
+        h+=`<div class="note"><div class="paper"><div class="lab"><span>${esc(sp.label)}</span><span>Pièce n°${game.found.indexOf(sp.id)+1}</span></div>${justFound===sp.id?`<div data-type="${esc(sp.text)}"></div>`:esc(sp.text)}</div></div>`;
+      }else h+=`<button class="spot" data-spot="${sp.id}"><span class="ic">${sp.ic}</span><span>${esc(sp.label)}<small>${sub} · −10 min</small></span></button>`;
+    });
+  };
+  grp("scene","Scène du crime","Fouiller");
+  grp("terrain","Sur le terrain","Vérifier un alibi");
+  return h+`<p class="center" style="color:var(--dim);font-size:.74rem;margin-top:18px">${game.found.length}/${CASE.spots.length} pièces · l'essentiel se joue dans les interrogatoires</p>`;
+}
+
+function seenLines(s){
+  // ce que le joueur sait déjà sur le lieu où se trouvait ce suspect
+  const out=[];
+  CASE.stmts.forEach(x=>{ if(game.asked.includes(x.id)&&x.topic==="b"&&x.claim&&x.claim.who===s.id&&x.claim.at!=="SCÈNE@22h15") out.push(`Vu ${x.seenPhrase} (par ${nm(S(x.sid))})`); });
+  return out;
+}
+function viewSuspects(){
+  let h=`<h2>Les suspects</h2><div class="grid">`;
+  CASE.order.forEach(id=>{
+    const s=S(id), caught=game.caught.some(c=>c===`${id}:a`);
+    const n=CASE.stmts.filter(x=>x.sid===id&&x.topic!=="p"&&game.asked.includes(x.id)).length;
+    const seen=seenLines(s);
+    h+=`<button class="card" data-sus="${id}">${caught?`<span class="stamp">MENTEUR</span>`:""}${portrait(s,92,caught)}<b>${esc(s.full)}</b><div class="job">${esc(s.job)}</div><div class="prog">Interrogé : ${n}/3</div>${seen.length?`<div class="seen">📍 ${esc(seen.join(" ; "))}</div>`:""}</button>`;
+  });
+  return h+`</div><p class="center" style="color:var(--dim);font-size:.74rem;margin-top:18px">Touchez un suspect pour l'interroger.</p>`;
+}
+
+function viewInterro(){
+  const s=S(viewSuspect), caught=game.caught.includes(`${s.id}:a`);
+  const first=!game.hello[s.id]; game.hello[s.id]=true;
+  let h=`<button class="back" data-back="1">← Retour aux suspects</button><div class="who">${portrait(s,84,caught)}<div><b>${esc(s.full)}</b><span>${esc(s.job)}</span></div></div>`;
+  h+= first?`<p class="say" data-type="${esc(s.hello)}"></p>`:`<p class="say">${esc(s.hello)}</p>`;
+  ["a","b","c"].forEach(tp=>{
+    const x=ST(`${s.id}:${tp}`), got=game.asked.includes(x.id), cd=game.caught.includes(x.id);
+    if(!got){ h+= game.status==="playing"?`<button class="ask" data-ask="${x.id}"><span>❓ ${esc(x.q)}</span><small>−10 min</small></button>`:`<div class="paper stmt" style="opacity:.5"><div class="q">${esc(x.q)}</div><div class="a">—</div></div>`; return; }
+    h+=`<div class="paper stmt ${cd?"caught":""}"><div class="q">${esc(x.q)}</div><div class="a">${esc(x.text)}</div>`;
+    if(cd){ h+=`<span class="verdict">${x.flag==="slip"?"DÉTAIL TRAHI":"MENSONGE DÉMASQUÉ"}</span>`; if(x.react) h+=`<div class="a" style="margin-top:8px;font-style:italic">${esc(x.react)}</div>`; }
+    else if(x.flag!==undefined && game.status==="playing") h+=`<button class="cbtn" data-conf="${x.id}">⚖️ Confronter</button>`;
+    h+=`</div>`;
+    const pr=x.press&&CASE.stmts.find(y=>y.id===x.press);
+    if(cd&&pr){ h+=`<div class="paper stmt"><div class="q">${esc(pr.q)}</div><div class="a">${esc(pr.text)}</div></div>`; }
+  });
+  return h;
+}
+
+function carnetList(){
+  const items=[{id:"B0",kind:"note",title:"Note du capitaine Dugan",text:CASE.captainNote}];
+  game.found.forEach(id=>{const sp=SP(id);items.push({id,kind:"spot",title:sp.short,text:sp.text})});
+  game.asked.forEach(id=>{const x=ST(id);items.push({id,kind:"stmt",title:`${nm(S(x.sid))} — ${x.q}`,text:x.text,sid:x.sid})});
+  return items;
+}
+function viewCarnet(){
+  const it=carnetList(); let h=`<h2>Le carnet</h2><p style="color:var(--dim);font-size:.76rem;margin:0 0 10px">Tout ce que vous avez recueilli, dans l'ordre. Utilisez-le pour repérer les contradictions.</p>`;
+  const grp=(t,k)=>{const l=it.filter(x=>x.kind===k);if(!l.length)return;h+=`<h2>${t}</h2>`;l.forEach(x=>{h+=`<div class="note"><div class="paper"><div class="lab"><span>${esc(x.title)}</span></div>${esc(x.text)}</div></div>`})};
+  grp("Note","note");grp("Pièces","spot");grp("Témoignages","stmt");
+  return h;
+}
+
+function viewArrest(){
+  if(game.status!=="playing") return `<h2>Verdict</h2><div class="paper center">${game.status==="won"?"Affaire résolue.":"Affaire classée."}</div><button class="mbtn" id="seeres" style="margin-top:14px">Voir le rapport final</button>`;
+  let h=`<h2>Qui arrêtez-vous ?</h2><p style="color:var(--dim);font-size:.8rem;line-height:1.45">Une seule arrestation par affaire, et le capitaine ne signe que si vous avez démasqué un mensonge ou un détail trahi. Mais attention : un menteur que quelqu'un a vu ailleurs est innocent. Le coupable, lui, n'a été vu nulle part ailleurs.</p>`;
+  CASE.order.forEach(id=>{const s=S(id),pr=hasProof(id);h+=`<button class="acc" data-acc="${id}">${portrait(s,54,pr)}<div><b>${esc(s.full)}</b><small>${esc(s.job)}</small><small style="color:${pr?"var(--gold)":"var(--dim)"}">${pr?"Preuve établie : mensonge ou détail trahi":"Aucune preuve pour l'instant"}</small></div></button>`});
+  return h;
+}
+
+/* =====================================================================
+   ACTIONS
+   ===================================================================== */
+function toast(msg,ms=2000){const t=$("toast");t.textContent=msg;t.classList.add("show");clearTimeout(toast.t);toast.t=setTimeout(()=>t.classList.remove("show"),ms)}
+function act(ch,min){game.acts+=ch;game.min+=min}
+function openSpot(id){ if(game.found.includes(id)||game.status!=="playing")return; game.found.push(id); justFound=id; act("🔍",10); save(); renderAll(); }
+function ask(id){ if(game.asked.includes(id)||game.status!=="playing")return; game.asked.push(id); act("🗣",10); save(); renderAll(); }
+function openConfront(stId){
+  const x=ST(stId), items=carnetList().filter(i=>i.id!==stId);
+  let h=`<h3>Confronter</h3><p class="center" style="margin:0 0 4px"><b>${esc(nm(S(x.sid)))}</b> : ${esc(x.text)}</p><p class="center" style="margin:6px 0 0;font-size:.8rem">Quelle pièce ou quel témoignage contredit cette déclaration ?</p>`;
+  const g=(t,k)=>{const l=items.filter(i=>i.kind===k);if(!l.length)return;h+=`<div class="pgroup">${t}</div>`;l.forEach(i=>{h+=`<button class="pick" data-pick="${i.id}" data-st="${stId}"><b>${esc(i.title)}</b>${esc(i.text.length>150?i.text.slice(0,148)+"…":i.text)}</button>`})};
+  g("Note","note");g("Pièces","spot");g("Témoignages","stmt");
+  h+=`<button class="mbtn alt" id="cancel">Annuler</button>`;
+  openModal(h);
+}
+function confront(stId,itemId){
+  closeModal();
+  const x=ST(stId), s=S(x.sid);
+  if(game.caught.includes(stId)) return;
+  if(x.flag && x.refutedBy.includes(itemId)){
+    game.caught.push(stId);
+    if(x.press&&!game.asked.includes(x.press)) game.asked.push(x.press);
+    act("⚡",15); toast(x.flag==="slip"?"Détail trahi !":"Mensonge démasqué !");
+  } else {
+    game.wrong++; game.stars--; act("❌",30);
+    toast(x.flag? "−1 ★  Cette pièce ne contredit pas sa déclaration" : `−1 ★  La version de ${nm(s)} tient la route`,2600);
+    if(game.stars<=0){ game.stars=0; save(); renderAll(); return finish("lost"); }
+  }
+  save(); renderAll();
+}
+function accuse(sid){
+  closeModal();
+  const win=sid===CASE.culprit; game.acts+= win?"⚖️":"🚫"; game.min+=10; finish(win?"won":"lost",sid);
+}
+function finish(status,accused){
+  game.status=status; game.accused=accused||null;
+  if(mode==="daily"){
+    stats.played++;
+    if(status==="won"){stats.wins++;stats.streak=(stats.lastDay===idx-1&&stats.streak>0)?stats.streak+1:1;stats.max=Math.max(stats.max,stats.streak);stats.dist[rankIdx()]++}
+    else stats.streak=0;
+    stats.lastDay=idx;
+  }
+  save(); renderAll(); setTimeout(showResult,700);
+}
+
+/* =====================================================================
+   FENÊTRES
+   ===================================================================== */
+const overlay=$("overlay"),modal=$("modal");
+function openModal(html){$("toast").classList.remove("show");modal.innerHTML='<button class="close" aria-label="Fermer">×</button>'+html;overlay.classList.add("show");modal.querySelector(".close").onclick=closeModal;modal.scrollTop=0}
+function closeModal(){overlay.classList.remove("show");clearInterval(showStats.timer)}
+overlay.addEventListener("click",ev=>{if(ev.target===overlay)closeModal()});
+document.addEventListener("keydown",ev=>{if(ev.key==="Escape")closeModal()});
+
+function shareText(){
+  const won=game.status==="won";
+  return `🕵️ DOSSIER : 1960 · Affaire n°${idx+1}\n${won?`${RANKS[rankIdx()][0]} · arrestation à ${clock(game.min)} · ${"★".repeat(game.stars)}${"☆".repeat(MAX_STARS-game.stars)}`:"Affaire classée"}\n${game.acts}\n${location.href.split("#")[0]}`;
+}
+function showResult(){
+  const won=game.status==="won";
+  let h=`<h3>${won?"Affaire résolue":"Affaire classée"}</h3>`;
+  if(won) h+=`<p class="rank">${RANKS[rankIdx()][0]}<br><span class="big">${"★".repeat(game.stars)}${"☆".repeat(MAX_STARS-game.stars)}</span><br><small>Arrestation à ${clock(game.min)}</small></p>`;
+  else h+=`<p class="center">${game.accused?`${esc(S(game.accused).full)} est relâché${e(S(game.accused))}, faute de preuves. `:"Votre crédibilité est épuisée. "}Le capitaine confie l'affaire à un autre inspecteur.<br><b>Le coupable était ${esc(S(CASE.culprit).full)}.</b></p>`;
+  h+=`<p>${esc(CASE.confession)}</p>`;
+  if(!won) h+=`<div class="pgroup">Comment ça se déduisait</div><ul>${CASE.solution.map(t=>`<li>${esc(t)}</li>`).join("")}</ul>`;
+  h+=`<div class="trace">${game.acts}</div>`;
+  h+=`<button class="mbtn" id="stats-open">Mes statistiques</button>`;
+  if(mode==="daily") h+=`<button class="mbtn" id="share">Partager mon résultat</button>`;
+  h+= mode==="daily"?`<button class="mbtn alt" id="practice">Une autre affaire (entraînement)</button>`:`<button class="mbtn alt" id="daily">Retour à l'affaire du jour</button>`;
+  openModal(h);
+}
+function showStats(){
+  const pct=stats.played?Math.round(stats.wins/stats.played*100):0,mx=Math.max(1,...stats.dist);
+  const dist=stats.dist.map((n,i)=>`<div class="dist"><span>${RANKS[i][0].split(" ")[0]}</span><i class="${mode==="daily"&&game.status==="won"&&rankIdx()===i?"me":""}" style="width:${Math.max(8,n/mx*60)}%">${n}</i></div>`).join("");
+  let h=`<h3>Statistiques</h3><div class="sgrid"><div><b>${stats.played}</b><small>Affaires</small></div><div><b>${pct}</b><small>% résolues</small></div><div><b>${stats.streak}</b><small>Série</small></div><div><b>${stats.max}</b><small>Meilleure série</small></div></div>${dist}`;
+  if(mode==="daily"&&game.status!=="playing") h+=`<div class="next">Prochaine affaire dans<b id="cd">${nextIn()}</b></div><button class="mbtn" id="share">Partager mon résultat</button>`;
+  h+= mode==="daily"?`<button class="mbtn alt" id="practice">Une autre affaire (entraînement)</button>`:`<button class="mbtn alt" id="daily">Retour à l'affaire du jour</button>`;
+  openModal(h);
+  const cd=$("cd");if(cd)showStats.timer=setInterval(()=>{cd.textContent=nextIn();if(cd.textContent==="00:00:00")location.reload()},1000);
+}
+function showHelp(){
+  openModal(`<h3>Comment enquêter</h3>
+  <p>Chaque jour, un meurtre dans le Los Angeles de 1960, quatre ou cinq suspects. Un seul est coupable. <b>Vous n'avez droit qu'à une arrestation.</b></p>
+  <ul><li><b>Enquête</b> : fouillez la scène du crime et vérifiez les alibis sur le terrain.</li>
+  <li><b>Suspects</b> : posez-leur trois questions. Ce qu'ils répondent est la matière de l'enquête.</li>
+  <li><b>Confronter</b> : quand une déclaration vous semble fausse, opposez-lui une pièce ou le témoignage de quelqu'un d'autre. Une erreur coûte une étoile.</li></ul>
+  <p>Pour arrêter quelqu'un, il faut d'abord avoir <b>démasqué</b> un de ses mensonges ou un détail qu'il n'aurait pas dû connaître.</p><p><b>Règle d'or :</b> on ment pour se couvrir soi-même, jamais pour charger ou couvrir un autre. Le tueur a menti sur son alibi, et à l'heure du crime il était sur place : personne n'a pu le voir ailleurs.</p>
+  <p>Chaque action fait avancer la pendule. Plus vite vous bouclez l'enquête, meilleur est votre rang.</p>
+  <p class="center"><b>Une nouvelle affaire chaque jour à minuit (heure de Paris).</b></p>`);
+}
+
+/* =====================================================================
+   ÉVÉNEMENTS
+   ===================================================================== */
+document.addEventListener("click",ev=>{
+  const t=ev.target.closest("[data-tab],[data-spot],[data-sus],[data-back],[data-ask],[data-conf],[data-pick],[data-acc],[data-confirm],#cancel,#share,#practice,#daily,#stats-open,#seeres");
+  if(!t)return;
+  if(t.dataset.tab){tab=t.dataset.tab;viewSuspect=null;window.scrollTo(0,0);return renderAll()}
+  if(t.dataset.spot)return openSpot(t.dataset.spot);
+  if(t.dataset.sus){viewSuspect=t.dataset.sus;window.scrollTo(0,0);return renderAll()}
+  if(t.dataset.back){viewSuspect=null;return renderAll()}
+  if(t.dataset.ask)return ask(t.dataset.ask);
+  if(t.dataset.conf)return openConfront(t.dataset.conf);
+  if(t.dataset.pick)return confront(t.dataset.st,t.dataset.pick);
+  if(t.dataset.acc){if(game.status!=="playing")return;const s=S(t.dataset.acc);
+    if(!hasProof(s.id))return openModal(`<h3>Mandat refusé</h3><p class="center">Le capitaine Dugan refuse de signer : « Vous n'avez rien de concret contre ${esc(nm(s))}, Inspecteur. Démasquez un mensonge ou un détail trahi, puis revenez. »</p><button class="mbtn alt" id="cancel">Compris</button>`);
+    return openModal(`<h3>Arrestation</h3><p class="center">Arrêter <b>${esc(s.full)}</b> pour le meurtre de ${esc(nm(CASE.victim))} ?</p><p class="center"><small>Vous n'avez droit qu'à une seule arrestation.</small></p><button class="mbtn" data-confirm="${s.id}">Oui, passez-lui les menottes</button><button class="mbtn alt" id="cancel">Pas encore</button>`)}
+  if(t.dataset.confirm)return accuse(t.dataset.confirm);
+  if(t.id==="cancel")return closeModal();
+  if(t.id==="stats-open")return showStats();
+  if(t.id==="seeres")return showResult();
+  if(t.id==="practice")return startPractice();
+  if(t.id==="daily")return backToDaily();
+  if(t.id==="share"){const x=shareText();(async()=>{try{if(navigator.share)await navigator.share({text:x});else{await navigator.clipboard.writeText(x);toast("Résultat copié !")}}catch(_){try{await navigator.clipboard.writeText(x);toast("Résultat copié !")}catch(__){}}})()}
+});
+$("btn-help").onclick=showHelp;$("btn-stats").onclick=showStats;
+function startPractice(){mode="practice";CASE=genCase(1000+Math.floor(Math.random()*900000));finalizeCase(CASE);game=fresh();tab="enquete";viewSuspect=null;closeModal();renderAll();window.scrollTo(0,0)}
+function backToDaily(){mode="daily";CASE=dailyCase;game=daily;tab="enquete";viewSuspect=null;closeModal();renderAll();window.scrollTo(0,0)}
+document.addEventListener("visibilitychange",()=>{if(!document.hidden&&mode==="daily"&&todayIndex()!==idx)location.reload()});
+
+/* =====================================================================
+   DÉMARRAGE
+   ===================================================================== */
+renderAll();
+if(!saved.daily&&!saved.stats)showHelp();
+else if(game.status!=="playing")setTimeout(showResult,300);
+</script>
+</body>
+</html>
